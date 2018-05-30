@@ -117,4 +117,28 @@ class LinkedBrickBoxView (ctx : Context) : View(ctx) {
             return this
         }
     }
+
+    data class LinkedBrickBox(var i : Int) {
+
+        var curr : LLBNode = LLBNode(0)
+
+        var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
+
+        fun update(stopcb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                stopcb(it)
+            }
+        }
+
+        fun startUpdating(startcb : () -> Unit) {
+            curr.startUpdating(startcb)
+        }
+    }
 }

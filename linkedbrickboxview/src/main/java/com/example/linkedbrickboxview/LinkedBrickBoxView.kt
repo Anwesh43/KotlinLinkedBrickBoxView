@@ -4,6 +4,7 @@ package com.example.linkedbrickboxview
  * Created by anweshmishra on 30/05/18.
  */
 
+import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.MotionEvent
@@ -164,6 +165,14 @@ class LinkedBrickBoxView (ctx : Context) : View(ctx) {
             linkedBrickBox.startUpdating {
                 animator.stop()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : LinkedBrickBoxView {
+            val view : LinkedBrickBoxView = LinkedBrickBoxView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }

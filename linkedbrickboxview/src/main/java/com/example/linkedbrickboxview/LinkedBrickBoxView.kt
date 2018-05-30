@@ -163,7 +163,7 @@ class LinkedBrickBoxView (ctx : Context) : View(ctx) {
 
         fun handleTap() {
             linkedBrickBox.startUpdating {
-                animator.stop()
+                animator.start()
             }
         }
     }

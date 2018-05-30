@@ -37,7 +37,7 @@ class DrawMethodContainer {
                     for (i in 0..1) {
                         canvas.save()
                         canvas.translate(0f, size/2 * (1 - 2 * i))
-                        canvas.drawRect(-0.9f * size * scale, -size/5, 0.9f * size * scale, size/5, paint)
+                        canvas.drawRect(-0.9f * size * scale, -size/7, 0.9f * size * scale, size/7, paint)
                         canvas.restore()
                     }
                 }
@@ -51,7 +51,7 @@ class DrawMethodContainer {
                     paint.color = Color.parseColor("#2980b9")
                     for (i in 0..1) {
                         canvas.save()
-                        canvas.translate(size/2 * (1 - i), 0f)
+                        canvas.translate(size/2 * (1 - 2 * i), 0f)
                         canvas.drawArc(RectF(-r, -r, r, r), 0f, 360f * scale, true, paint)
                         canvas.restore()
                     }

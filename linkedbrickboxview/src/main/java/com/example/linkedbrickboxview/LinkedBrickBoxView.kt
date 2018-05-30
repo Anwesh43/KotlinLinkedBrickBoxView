@@ -141,4 +141,27 @@ class LinkedBrickBoxView (ctx : Context) : View(ctx) {
             curr.startUpdating(startcb)
         }
     }
+
+    data class Renderer(var view : LinkedBrickBoxView) {
+
+        private val animator : Animator = Animator(view)
+
+        private val linkedBrickBox : LinkedBrickBox = LinkedBrickBox(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#212121"))
+            linkedBrickBox.draw(canvas, paint)
+            animator.animate {
+                linkedBrickBox.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            linkedBrickBox.startUpdating {
+                animator.stop()
+            }
+        }
+    }
 }

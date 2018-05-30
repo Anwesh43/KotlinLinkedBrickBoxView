@@ -23,10 +23,10 @@ class DrawMethodContainer {
         init {
             cbs.add {canvas, paint, scale ->
                 canvas.goToCenter {
-                    val size : Float = canvas.getSize()
+                    val size : Float = 1.3f * canvas.getSize()
                     paint.color = Color.parseColor("#34495e")
                     canvas.scale(scale, scale)
-                    canvas.drawRoundRect(RectF(-size, -size, size, size), size/2, size/3, paint)
+                    canvas.drawRoundRect(RectF(-size, -size, size, size), size/3, size/3, paint)
                 }
             }
 
@@ -36,7 +36,7 @@ class DrawMethodContainer {
                     paint.color = Color.parseColor("#9b59b6")
                     for (i in 0..1) {
                         canvas.save()
-                        canvas.translate(0f, size/2 * (1 - 2 * i))
+                        canvas.translate(0f, 2 * size / 3 * (1 - 2 * i))
                         canvas.drawRect(-0.9f * size * scale, -size/7, 0.9f * size * scale, size/7, paint)
                         canvas.restore()
                     }

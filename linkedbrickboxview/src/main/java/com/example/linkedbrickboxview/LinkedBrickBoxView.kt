@@ -74,4 +74,47 @@ class LinkedBrickBoxView (ctx : Context) : View(ctx) {
             }
         }
     }
+
+    class LLBNode(var i : Int, val state : State = State(), val cb : (Canvas, Paint, Float) -> Unit = DrawMethodContainer.pop()) {
+
+        var next : LLBNode? = null
+
+        var prev : LLBNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (!DrawMethodContainer.isEmpty()) {
+                next = LLBNode(i+1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            prev?.draw(canvas, paint)
+            cb(canvas, paint, state.scale)
+        }
+
+        fun update(stopcb : (Float) -> Unit) {
+            state.update(stopcb)
+        }
+
+        fun startUpdating(startcb : () -> Unit) {
+            state.startUpdating(startcb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LLBNode {
+            var curr : LLBNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
